@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\WantedController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +23,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::middleware('auth')->prefix('/admin')->name('admin.')->group(function () {
+    Route::get('/wanted', [WantedController::class, 'index'])->name('wanted.home');
+    Route::get('/wanted/{id}', [WantedController::class, 'show'])->name('wanted.show');
+    Route::get('/wanted/create', [WantedController::class, 'create'])->name('wanted.create');
+    Route::post('/wanted', [WantedController::class, 'store'])->name('wanted.store');
+});
