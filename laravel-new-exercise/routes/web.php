@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\WantedController::class, 'index'])->name('home');
 
 
 Route::middleware('auth')->prefix('/admin')->name('admin.')->group(function () {
@@ -37,14 +37,3 @@ Route::middleware('auth')->prefix('/admin')->name('admin.')->group(function () {
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
-
-Route::post('/login', [LoginController::class, 'authenticate']);
-
-Route::get(
-    '/register',
-    function () {
-        return view('auth.register');
-    }
-)->name('register');
-
-Route::post('/register', [RegisterController::class, 'handle']);
