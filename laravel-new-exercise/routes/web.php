@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\WantedController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 
 /*
@@ -31,3 +33,18 @@ Route::middleware('auth')->prefix('/admin')->name('admin.')->group(function () {
     Route::get('/wanted/create', [WantedController::class, 'create'])->name('wanted.create');
     Route::post('/wanted', [WantedController::class, 'store'])->name('wanted.store');
 });
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::get(
+    '/register',
+    function () {
+        return view('auth.register');
+    }
+)->name('register');
+
+Route::post('/register', [RegisterController::class, 'handle']);

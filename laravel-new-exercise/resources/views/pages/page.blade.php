@@ -15,7 +15,7 @@
    Register
 </a>
 
-
+</div>
 
 @endsection
 
