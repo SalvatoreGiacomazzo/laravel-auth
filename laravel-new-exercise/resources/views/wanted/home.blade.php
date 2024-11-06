@@ -12,6 +12,7 @@
         <th scope="col">Date of Birth</th>
         <th scope="col">Nationality</th>
         <th scope="col">Felony</th>
+        <th scope="col">Show</th>
       </tr>
     </thead>
     <tbody>
@@ -23,7 +24,9 @@
           <td>{{ $wanted->date_of_birth }}</td>
           <td>{{ $wanted->nationality }}</td>
           <td>{{ $wanted->felony }}</td>
+          <td><a href="{{route('admin.wanted.show', $wanted->id)}}"><button>Show</button></a></td>
         </tr>
+
       @endforeach
     </tbody>
   </table>
